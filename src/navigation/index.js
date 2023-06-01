@@ -1,7 +1,14 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {SplashScreen, AuthScreen, Home} from '../components';
+import {
+  SplashScreen,
+  AuthScreen,
+  Home,
+  ProductDetail,
+  TopNavigation,
+  SearchProduct,
+} from '../components';
 
 const Stack = createStackNavigator();
 
@@ -25,10 +32,26 @@ const listScreens = [
   {
     name: 'Home',
     component: Home,
-    options: {
-      header: null,
-      headerShown: false,
-    },
+    // options: {
+    //   header: null,
+    //   headerShown: false,
+    // },
+  },
+  {
+    name: 'ProductDetail',
+    component: ProductDetail,
+    // options: {
+    //   header: null,
+    //   headerShown: false,
+    // },
+  },
+  {
+    name: 'SearchProduct',
+    component: SearchProduct,
+    // options: {
+    //   header: null,
+    //   headerShown: false,
+    // },
   },
   // Add more screens as needed
 ];
@@ -36,7 +59,10 @@ const listScreens = [
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          header: () => <TopNavigation />,
+        }}>
         {listScreens.map((screen, index) => (
           <Stack.Screen
             key={index}

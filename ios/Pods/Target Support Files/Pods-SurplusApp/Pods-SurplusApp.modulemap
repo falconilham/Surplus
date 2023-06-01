@@ -1,0 +1,6 @@
+module Pods_SurplusApp {
+  umbrella header "Pods-SurplusApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
