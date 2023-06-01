@@ -52,4 +52,4 @@ During development, the project was tested on iPhone 14 (iOS 16.4) and Android 1
 
 ## Preview
 
-![Preview]('screenshot/iPhone 14.png')
+![Preview]('/screenshot/iPhone 14.png')
