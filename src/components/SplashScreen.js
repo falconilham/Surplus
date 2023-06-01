@@ -1,22 +1,27 @@
 import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import SurplusLogo from './Logo';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
-
+  const {auth} = useSelector(state => state);
   useEffect(() => {
     const timer = setTimeout(() => {
       // Navigate to the desired screen after 3 seconds
-      navigation.navigate('Auth');
+      if (auth.token) {
+        navigation.navigate('Home');
+      } else {
+        navigation.navigate('Auth');
+      }
     }, 3000);
 
     return () => {
       // Clear the timeout if the component is unmounted before the timer expires
       clearTimeout(timer);
     };
-  }, [navigation]);
+  }, [navigation, auth]);
 
   return (
     <View style={styles.container}>
