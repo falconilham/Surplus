@@ -1,10 +1,10 @@
 ## Overview
 
-This project is a test assignment from Surplus
+This project is a test assignment from Surplus.
 
 ### Features
 
-- User authentication and login using API from https://dummyjson.com
+- Uses API from https://dummyjson.com
 - Browse and search products
 - View detailed product information
 
@@ -15,9 +15,12 @@ Follow these steps to install and run the project locally:
 1. Clone the repository: `git clone https://github.com/falconilham/Surplus.git`
 2. Navigate to the project directory: `cd Surplus`
 3. Install the dependencies: `npm install`
-4. Run from Ios : `npm run ios`
-5. Run from Android: `npm run android`.
-6. use username: `kminchelle` & password: `0lelplR`
+4. Install Pod for iOS: `npm run install-ios`
+5. Run on iOS: `npm run ios`
+6. Run on Android: `npm run android`
+7. Use the following credentials for login:
+   - Username: `kminchelle`
+   - Password: `0lelplR`
 
 ## Technologies Used
 
@@ -26,7 +29,27 @@ Follow these steps to install and run the project locally:
 - React Navigation for app navigation
 - Axios for making API requests
 - React Native Paper for UI Library
+- React Hook Form for handling forms
+
+## Structure
+
+SurplusApp/
+├── src/
+│   ├── components/              # Reusable components
+│   ├── navigation/              # Navigation configuration
+│   ├── services/                # API services and integrations
+│   ├── redux/                   # Redux store configuration
+│   └── index.js                 # Entry point of the application
+├── .gitignore
+├── package.json
+├── README.md
+└── ...                          # Other project files and folders
 
 ## Development
 
-For development i'm using Iphone 14 (Ios 16.4) and Android 11 
+During development, the project was tested on iPhone 14 (iOS 16.4) and Android 11.
+
+
+## Preview
+
+![Preview]('./iPhone 14.png')

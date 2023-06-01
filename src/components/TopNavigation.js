@@ -11,7 +11,6 @@ const NavigationHeader = () => {
   const navigation = useNavigation();
   const goToSearch = () =>
     navigation.navigate('SearchProduct', {searchQuery: search});
-  console.log({search});
 
   const handleLogout = () => {
     // Perform logout logic here

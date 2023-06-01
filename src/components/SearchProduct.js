@@ -6,7 +6,6 @@ import {RenderProductItem} from '../components/';
 
 const SearchProduct = ({route}) => {
   const {searchQuery} = route.params;
-  console.log({searchQuery});
   const [totalMax, setTotalMax] = useState(0);
   const [products, setProducts] = useState([]);
 

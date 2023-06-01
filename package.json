@@ -7,7 +7,8 @@
     "ios": "react-native run-ios && open 'rndebugger://set-debugger-loc?host=localhost&port=8081'",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "install-ios": "cd ios && pod install && cd .."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.1",
@@ -28,8 +29,7 @@
     "react-native-svg": "^13.9.0",
     "react-native-vector-icons": "^9.2.0",
     "react-redux": "^8.0.5",
-    "redux-persist": "^6.0.0",
-    "use-debounce": "^9.0.4"
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

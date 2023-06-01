@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useForm} from 'react-hook-form';
 import {Button} from 'react-native-paper';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import FormInput from './FormInput';
 import {login} from '../services/authService';
 import {SurplusLogo} from '../components/';
@@ -37,21 +37,18 @@ const AuthScreen = () => {
     formState: {errors},
   } = useForm();
   const dispatch = useDispatch();
-  const state = useSelector(state => state);
   const navigation = useNavigation();
   const handleLogin = async value => {
     try {
       const response = await login(value);
       const data = response.data;
-      console.log(data);
       dispatch(setAuth(data));
       navigation.navigate('Home');
     } catch (error) {
-      console.log({error});
       dispatch(setError(error.response.data.message));
+      throw new Error(error);
     }
   };
-  console.log({state});
   return (
     <View style={styles.container}>
       <SurplusLogo />
