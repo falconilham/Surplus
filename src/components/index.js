@@ -5,3 +5,6 @@ export {default as SurplusLogo} from './Logo';
 export {default as ErrorModal} from './ErrorModal';
 export {default as Home} from './Home';
 export {default as RenderProductItem} from './CardItem';
+export {default as ProductDetail} from './ProductDetail';
+export {default as TopNavigation} from './TopNavigation';
+export {default as SearchProduct} from './SearchProduct';

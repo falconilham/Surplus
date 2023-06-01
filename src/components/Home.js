@@ -1,16 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {useDebounce} from 'use-debounce';
-import {getAllProducts, getSearchProducts} from '../services/productServices';
+import {getAllProducts} from '../services/productServices';
 import {View, StyleSheet, FlatList} from 'react-native';
-import {Searchbar, List, Title} from 'react-native-paper';
+import {List, Title} from 'react-native-paper';
 import {RenderProductItem} from '../components/';
 
 const Home = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchProducts, setSearchProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [totalMax, setTotalMax] = useState(0);
-  const [debounceValue] = useDebounce(searchQuery, 1000);
 
   const fetchProducts = useCallback(async (total = 0, query) => {
     try {
@@ -21,21 +17,6 @@ const Home = () => {
       console.error('Error fetching products:', error);
     }
   }, []);
-
-  const searchProduct = useCallback(async query => {
-    try {
-      const {data} = await getSearchProducts(query);
-      setSearchProducts(data.products);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (debounceValue) {
-      searchProduct(debounceValue);
-    }
-  }, [debounceValue, searchProduct]);
 
   useEffect(() => {
     fetchProducts();
@@ -48,20 +29,13 @@ const Home = () => {
   };
   console.log({products});
 
-  const usedData = debounceValue ? searchProducts : products;
-
   return (
     <View style={styles.container}>
-      <Searchbar
-        placeholder="Search products"
-        value={searchQuery}
-        onChangeText={value => setSearchQuery(value)}
-      />
       <List.Section style={styles.containerSection}>
         <Title style={styles.recommendTitle}>Products</Title>
         <View style={styles.productContainer}>
           <FlatList
-            data={usedData}
+            data={products}
             columnWrapperStyle={{justifyContent: 'space-between'}}
             keyExtractor={item => item.id.toString()}
             onEndReached={handleLoadMore}
