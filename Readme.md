@@ -52,4 +52,9 @@ During development, the project was tested on iPhone 14 (iOS 16.4) and Android 1
 
 ## Preview
 
-![Preview]('/screenshot/Android.png')
+## Preview
+
+Here are the preview screenshots of the application:
+
+![Android Screenshot](screenshot/Android.png)
+![iOS Screenshot](screenshot/Iphone 14.png)
