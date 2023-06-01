@@ -1,6 +1,0 @@
-module Pods_SurplusApp_SurplusAppTests {
-  umbrella header "Pods-SurplusApp-SurplusAppTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
