@@ -9,7 +9,7 @@ const SplashScreen = () => {
   const {auth} = useSelector(state => state);
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Navigate to the desired screen after 3 seconds
+      // Navigate to the home if there a token or else to login screen after 3 seconds
       if (auth.token) {
         navigation.navigate('Home');
       } else {

@@ -1,49 +1,76 @@
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import React, {useState, useEffect, useCallback} from 'react';
+import {useDebounce} from 'use-debounce';
+import {getAllProducts, getSearchProducts} from '../services/productServices';
 import {View, StyleSheet, FlatList} from 'react-native';
-import {Searchbar, List, Title, Card} from 'react-native-paper';
+import {Searchbar, List, Title} from 'react-native-paper';
+import {RenderProductItem} from '../components/';
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [products, setProducts] = useState([
-    {id: '1', name: 'Product 1'},
-    {id: '2', name: 'Product 2'},
-    {id: '3', name: 'Product 3'},
-    {id: '4', name: 'Product 4'},
-    {id: '5', name: 'Product 5'},
-  ]);
+  const [searchProducts, setSearchProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [totalMax, setTotalMax] = useState(0);
+  const [debounceValue] = useDebounce(searchQuery, 1000);
 
-  const handleSearch = query => {
-    setSearchQuery(query);
-    // Perform search logic here, such as filtering products based on the search query
-    // You can update the "products" state with the filtered results
+  const fetchProducts = useCallback(async (total = 0, query) => {
+    try {
+      const {data} = await getAllProducts(total, query);
+      setTotalMax(data.total);
+      setProducts(current => [...current, ...data.products]);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  }, []);
+
+  const searchProduct = useCallback(async query => {
+    try {
+      const {data} = await getSearchProducts(query);
+      setSearchProducts(data.products);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (debounceValue) {
+      searchProduct(debounceValue);
+    }
+  }, [debounceValue, searchProduct]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
+  const handleLoadMore = () => {
+    if (products.length < totalMax) {
+      fetchProducts(products.length);
+    }
   };
-  const data = useSelector(state => state);
-  const renderProductItem = ({item}) => <List.Item title={item.name} />;
-  console.log({data});
+  console.log({products});
+
+  const usedData = debounceValue ? searchProducts : products;
+
   return (
     <View style={styles.container}>
       <Searchbar
         placeholder="Search products"
         value={searchQuery}
-        onChangeText={handleSearch}
+        onChangeText={value => setSearchQuery(value)}
       />
-
-      <List.Section>
-        <List.Subheader>Products</List.Subheader>
-        <FlatList
-          data={products}
-          keyExtractor={item => item.id}
-          renderItem={renderProductItem}
-        />
+      <List.Section style={styles.containerSection}>
+        <Title style={styles.recommendTitle}>Products</Title>
+        <View style={styles.productContainer}>
+          <FlatList
+            data={usedData}
+            columnWrapperStyle={{justifyContent: 'space-between'}}
+            keyExtractor={item => item.id.toString()}
+            onEndReached={handleLoadMore}
+            onEndReachedThreshold={0.1}
+            renderItem={({item}) => <RenderProductItem product={item} />}
+            numColumns={2}
+          />
+        </View>
       </List.Section>
-
-      <Title style={styles.recommendTitle}>Recommended Products</Title>
-
-      {/* Carousel component for recommended products */}
-      {/* Implement the carousel component of your choice */}
-      {/* You can use popular libraries like react-native-snap-carousel or react-native-swiper */}
-      {/* Render the recommended products within the carousel */}
     </View>
   );
 };
@@ -53,11 +80,20 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
+  containerSection: {
+    flex: 1,
+  },
   recommendTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 16,
-    marginBottom: 8,
+  },
+  productContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  columnWrapperStyle: {
+    justifyContent: 'space-between',
   },
 });
 
