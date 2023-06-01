@@ -56,5 +56,5 @@ During development, the project was tested on iPhone 14 (iOS 16.4) and Android 1
 
 Here are the preview screenshots of the application:
 
-![Android Screenshot](screenshot/Android.png)
-![iOS Screenshot](screenshot/Iphone 14.png)
+![Android Screenshot](screenshot/Android.png) {:height="36px" width="36px"}
+![iOS Screenshot](screenshot/IPhone 14.png) {:height="36px" width="36px"}
