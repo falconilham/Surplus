@@ -1,6 +1,6 @@
 import React from 'react';
-import {TextInput, Text, View, StyleSheet} from 'react-native';
-import {useController} from 'react-hook-form';
+import {TextInput, Text, StyleSheet} from 'react-native';
+import {Controller} from 'react-hook-form';
 
 const FormInput = ({
   control,
@@ -8,47 +8,45 @@ const FormInput = ({
   rules,
   placeholder,
   secureTextEntry,
+  initialValue,
   errors,
 }) => {
-  const {
-    field: {onChange, onBlur, value},
-  } = useController({
-    control,
-    defaultValue: '',
-    name,
-    rules,
-  });
-
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
-        onBlur={onBlur}
-        onChangeText={onChange}
-        value={value}
+    <>
+      <Controller
+        control={control}
+        name={name}
+        rules={rules}
+        defaultValue={initialValue}
+        render={({field: {onChange, value}}) => (
+          <TextInput
+            style={styles.input}
+            placeholder={placeholder}
+            secureTextEntry={secureTextEntry}
+            value={value}
+            onChangeText={onChange}
+          />
+        )}
       />
-      {errors && errors[name] && (
-        <Text style={styles.error}>{errors[name].message}</Text>
+      {errors[name] && (
+        <Text style={styles.errorText}>{errors[name].message}</Text>
       )}
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 10,
-  },
   input: {
+    width: '100%',
+    height: 40,
     borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 5,
-    padding: 10,
+    borderColor: 'gray',
+    marginBottom: 16,
+    paddingHorizontal: 8,
   },
-  error: {
+  errorText: {
     color: 'red',
-    fontSize: 12,
+    marginBottom: 8,
   },
 });
 

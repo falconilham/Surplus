@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {SplashScreen, AuthScreen} from '../components';
+import {SplashScreen, AuthScreen, Home} from '../components';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +17,14 @@ const listScreens = [
   {
     name: 'Auth',
     component: AuthScreen,
+    options: {
+      header: null,
+      headerShown: false,
+    },
+  },
+  {
+    name: 'Home',
+    component: Home,
     options: {
       header: null,
       headerShown: false,
