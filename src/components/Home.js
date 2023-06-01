@@ -27,7 +27,6 @@ const Home = () => {
       fetchProducts(products.length);
     }
   };
-  console.log({products});
 
   return (
     <View style={styles.container}>

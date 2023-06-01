@@ -8,7 +8,6 @@ const getAllProducts = async (skip, query) => {
       q: query,
     },
   });
-  console.log({query, response});
   return response;
 };
 
@@ -18,7 +17,6 @@ const getSearchProducts = async query => {
       q: query,
     },
   });
-  console.log({query, response});
   return response;
 };
 
