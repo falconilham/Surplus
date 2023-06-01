@@ -52,4 +52,7 @@ During development, the project was tested on iPhone 14 (iOS 16.4) and Android 1
 
 ## Preview
 
-![Preview]('./iPhone 14.png')
+![Preview]('./screenshot/iPhone 14.png')
+
+
+Feel free to contact me if anything happen on ilhama36@gmail.com Github: https://github.com/falconilham
