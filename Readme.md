@@ -35,14 +35,14 @@ Follow these steps to install and run the project locally:
 
 SurplusApp/
 ├── src/
-│   ├── components/              # Reusable components
-│   ├── navigation/              # Navigation configuration
-│   ├── services/                # API services and integrations
-│   ├── redux/                   # Redux store configuration
-│   └── index.js                 # Entry point of the application
-├── .gitignore
-├── package.json
-├── README.md
+│     ├── components/              # Reusable components
+│     ├── navigation/              # Navigation configuration
+│     ├── services/                # API services and integrations
+│     ├── redux/                   # Redux store configuration
+│     └── index.js                 # Entry point of the application
+├──── .gitignore
+├──── package.json
+├──── README.md
 └── ...                          # Other project files and folders
 
 ## Development
@@ -50,15 +50,5 @@ SurplusApp/
 During development, the project was tested on iPhone 14 (iOS 16.4) and Android 11.
 
 
-## Preview
-
-## Preview
-
-Here are the preview screenshots of the application:
-
-<div style="width:250px ; height:250px">
-![Android Screenshot](screenshot/Android.png)
-<div>
-<div style="width:250px ; height:250px">
-![iOS Screenshot](screenshot/IPhone 14.png)
-<div>
+### UPDATE 
+There are some update on image list and background
