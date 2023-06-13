@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, ScrollView} from 'react-native';
 import {Title, Paragraph} from 'react-native-paper';
 
 const ProductDetail = ({route}) => {
   const {product} = route.params;
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
         <Image source={{uri: product?.thumbnail}} style={styles.image} />
       </View>
@@ -20,15 +20,15 @@ const ProductDetail = ({route}) => {
         <Paragraph style={styles.stock}>Stock: {product.stock}</Paragraph>
         <Paragraph style={styles.rating}>Rating: {product.rating}</Paragraph>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+    backgroundColor: 'white',
   },
   imageContainer: {
     alignItems: 'center',

@@ -11,9 +11,15 @@ function RenderProductItem({product}) {
 
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={[styles.container, styles.shadowProp]}
       onPress={() => navigation.navigate('ProductDetail', {product})}>
-      <Image source={{uri: thumbnail}} style={styles.thumbnail} />
+      <View
+        style={{
+          boxSizing: 'border-box',
+          aspectRatio: 1,
+        }}>
+        <Image source={{uri: thumbnail}} style={styles.thumbnail} />
+      </View>
       <View style={styles.content}>
         <Title style={styles.title}>{title}</Title>
         {discountPercentage > 0 && (
@@ -36,6 +42,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: '48%',
     justifyContent: 'space-between',
+    alignContent: 'center',
+    alignItems: 'center',
     flexDirection: 'column',
     borderWidth: 1,
     borderColor: '#ccc',
@@ -46,7 +54,15 @@ const styles = StyleSheet.create({
     height: 150,
     width: '100%',
     resizeMode: 'contain',
+    alignSelf: 'center',
+    aspectRatio: '4/5',
     padding: 20,
+  },
+  shadowProp: {
+    // shadowColor: '#171717',
+    // shadowOffset: {width: -2, height: 4},
+    // shadowOpacity: 0.2,
+    // shadowRadius: 3,
   },
   content: {
     padding: 10,
